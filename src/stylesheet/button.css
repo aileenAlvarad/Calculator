@@ -19,10 +19,10 @@
   background-color: #5a01a7;
 }
 
-.isOperator {
+.operator {
   background-color: blueviolet;
 } 
 
-.isOperator:hover {
+.operator:hover {
   background-color: coral;
 } 
