@@ -3,9 +3,21 @@ import Button from './components/Button';
 import calculatorLogo from './images/calculator-logo.png';
 import Screen from './components/Screen'; 
 import ButtonClear from './components/ButtonClear';
+import {useState} from 'react';
+import {evaluate} from 'mathjs';
 
+function App() { 
 
-function App() {
+  const [input, setInput] = useState('');
+
+  const addInput = val => {
+    setInput(input + val);
+  }; 
+
+  const calculateResult = () => {
+    setInput(evaluate(input));
+  };
+
   return (
     <div className='App'>
       <div className='calculator-logo-container'>
@@ -15,33 +27,35 @@ function App() {
           alt='calculator logo' />
       </div>
       <div className='calculator-container'> 
-      <Screen />
+      <Screen input={input}/>
         <div className='row'>
-          <Button>1</Button>
-          <Button>2</Button>
-          <Button>3</Button>
-          <Button>+</Button>
+          <Button handleClick={addInput}>1</Button>
+          <Button handleClick={addInput}>2</Button>
+          <Button handleClick={addInput}>3</Button>
+          <Button handleClick={addInput}>+</Button>
         </div>
         <div className='row'>
-          <Button>4</Button>
-          <Button>5</Button>
-          <Button>6</Button>
-          <Button>-</Button>
+          <Button handleClick={addInput}>4</Button>
+          <Button handleClick={addInput}>5</Button>
+          <Button handleClick={addInput}>6</Button>
+          <Button handleClick={addInput}>-</Button>
         </div>
         <div className='row'>
-          <Button>7</Button>
-          <Button>8</Button>
-          <Button>9</Button>
-          <Button>*</Button>
+          <Button handleClick={addInput}>7</Button>
+          <Button handleClick={addInput}>8</Button>
+          <Button handleClick={addInput}>9</Button>
+          <Button handleClick={addInput}>*</Button>
         </div>
         <div className='row'>
-          <Button>=</Button>
-          <Button>0</Button>
-          <Button>.</Button>
-          <Button>/</Button>
+          <Button handleClick={calculateResult}>=</Button>
+          <Button handleClick={addInput}>0</Button>
+          <Button handleClick={addInput}>.</Button>
+          <Button handleClick={addInput}>/</Button>
         </div>
         <div className='row'> 
-        <ButtonClear>Clear</ButtonClear>
+        <ButtonClear handleClick= {() => setInput('')}>
+          Clear
+          </ButtonClear>
         </div>
       </div>
     </div>
